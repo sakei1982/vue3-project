@@ -1,29 +1,20 @@
 <script setup>
-// //导入函数
-// import { reactive } from 'vue';
-
-// //执行函数 传入对象类型参数 变量接受
-// const state = reactive({
-//   count:0
-// })
-// const setCount = ()=>{
-//   state.count++
-// }
-//导入函数
 import { ref } from 'vue'
-//执行函数 传入参数【简单类型 对象类型】 变量接受
-const count = ref({
-  count:0
+import { computed } from 'vue';
+const list = ref([1, 2, 3, 4, 5, 6, 7, 8])
+const computedList = computed(() => {
+  return list.value.filter(item => item > 2)
 })
-const setCount = ()=>{
-  //修改数据需要加.value
-  count.value++
-}
+setTimeout(() => {
+  list.value.push(9,10)
+}, 3000);
 </script>
-
 <template>
   <div>
-    <!-- <button @click="setCount">{{ state.count }}</button> -->
-    <button @click="setCount">{{ count.value }}</button>
+    {{ list }}
+  </div>
+  <br>
+  <div>
+    {{ computedList }}
   </div>
 </template>
