@@ -1,20 +1,21 @@
 <script setup>
-import { ref } from 'vue'
-import { computed } from 'vue';
-const list = ref([1, 2, 3, 4, 5, 6, 7, 8])
-const computedList = computed(() => {
-  return list.value.filter(item => item > 2)
-})
-setTimeout(() => {
-  list.value.push(9,10)
-}, 3000);
+  import {ref, watch} from 'vue'
+  const count = ref(0)
+  const name = ref('cp')
+  const changeCount = ()=>{
+    count.value++
+  }
+  const changeName = ()=>{
+    name.value='pc'
+  }
+watch([count,name],([newCount,newName],[oldCount,oldName])=>{
+  console.log([newCount,newName],[oldCount,oldName]);
+},{immediate:true})
 </script>
+
 <template>
   <div>
-    {{ list }}
-  </div>
-  <br>
-  <div>
-    {{ computedList }}
+    <button @click="changeCount">{{ count }}</button>
+    <button @click="changeName">{{ name }}</button>
   </div>
 </template>
