@@ -1,21 +1,33 @@
-<script setup>
-  import {ref, watch} from 'vue'
-  const count = ref(0)
-  const name = ref('cp')
-  const changeCount = ()=>{
-    count.value++
-  }
-  const changeName = ()=>{
-    name.value='pc'
-  }
-watch([count,name],([newCount,newName],[oldCount,oldName])=>{
-  console.log([newCount,newName],[oldCount,oldName]);
-},{immediate:true})
+<!-- <script setup>
+import { ref, watch } from 'vue'
+const state = ref({ count: 0 })
+const changeStateByCount = () => {
+  state.value.count++
+}
+watch(state, () => {
+  console.log('发生变化');
+},{deep:true})
 </script>
-
 <template>
   <div>
-    <button @click="changeCount">{{ count }}</button>
-    <button @click="changeName">{{ name }}</button>
+    {{ state.count }}
+    <button @click="changeStateByCount">count</button>
+  </div>
+</template> -->
+<script setup>
+import { ref, watch } from 'vue'
+const info = ref({ name: 'cp', age: 18 })
+const changeAge = () => {
+  info.value.age++
+}
+watch(
+  () => info.value.age,
+  () => console.log('发生变化')
+)
+</script>
+<template>
+  <div>
+    {{ info.age }}
+    <button @click="changeAge">bun</button>
   </div>
 </template>
