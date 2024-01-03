@@ -1,13 +1,11 @@
 <script setup>
-  import { ref } from 'vue'
-  import sonCom from './son-com.vue';
-  const count = ref(100)
-  setTimeout(() => {
-    count.value++
-  }, 3000);
+import sonCom from './son-com.vue';
+const getMessage = (msg) => {
+  console.log(msg);
+}
 </script>
 <template>
   <div>
-    <sonCom :count="count" message="hello"/>
+    <sonCom @get-message="getMessage" />
   </div>
 </template>
